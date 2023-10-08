@@ -9,11 +9,19 @@
         "48": "icons/icon.png",
         "128": "icons/icon.png"
     },
-    "permissions": ["sidePanel", "contextMenus"],
+    "options_page": "/options/options.html",
+    "permissions": [
+        "sidePanel",
+        "contextMenus",
+        "storage"
+    ],
+    "host_permissions": [
+        "https://api.openai.com/v1/completions"
+    ],
     "background": {
         "service_worker": "/scripts/background.js"
     },
     "side_panel": {
         "default_path": "/sidepanel/sidepanel.html"
-      }  
+    }
 }
