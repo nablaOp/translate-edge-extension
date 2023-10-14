@@ -6,7 +6,7 @@
       document.body.querySelector('#selected').innerText = data.value;
       document.body.querySelector('#examples').innerText = 'Loading...';
       
-      const requestToChat = `Provide three simple sentences in Estonian with using word '${data.value}' for better understanding the meaning of it.`
+      const requestToChat = `'${data.value}'`
       chrome.runtime.sendMessage({
         name: 'request-to-chat',
         data: { value: requestToChat }

@@ -20,11 +20,19 @@ chrome.contextMenus.onClicked.addListener((data) => {
 chrome.runtime.onMessage.addListener(async ({ name, data }) => {
     if (name === 'request-to-chat') {
         let answer = ''
-        
+
         try {
             const apiKey = await new Promise(resolve => chrome.storage.local.get(['apiKey'], result => resolve(result.apiKey)));
             const apiModel = "gpt-3.5-turbo-16k";
-            const message = [{ role: "user", "content": data.value }]
+            const message = [
+                {
+                    "role": "system",
+                    "content": "You an Estonian language interpreter. You explain meaning of words or phrase using simple A2 level Estonian. \nYou also provide couple examples.\nBe precise and short."
+                },
+                {
+                    role: "user",
+                    "content": data.value
+                }]
 
             const response = await fetch('https://api.openai.com/v1/chat/completions', {
                 method: 'POST',
